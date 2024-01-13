@@ -30,6 +30,7 @@ const HomeScreen: React.FC<IHomeProps> = props => {
           showsHorizontalScrollIndicator={false}>
           <View style={{paddingBottom: 20}}>
             <Slider imageList={sliderImageList} />
+            <Title title="Categories" />
             <View style={styles.gridArea}>
               <CategoryCard
                 onPress={() =>
