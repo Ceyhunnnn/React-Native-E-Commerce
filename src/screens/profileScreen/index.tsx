@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 import {
   View,
@@ -9,13 +10,12 @@ import {
 } from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-// import {Entypo} from '@expo/vector-icons';
-// import {Ionicons} from '@expo/vector-icons';
 // import {SimpleLineIcons} from '@expo/vector-icons';
 // import {MaterialIcons} from '@expo/vector-icons';
 import PathConstant from './../../navigation/PathConstant';
 import {NavigationProp} from '@react-navigation/native';
 import {images} from '../../assets';
+import {ArrowRightIcon, LogoutIcon, UserEditICon} from '../../components/Icon';
 
 interface IProfileProps {
   navigation: NavigationProp<any, any>;
@@ -34,32 +34,30 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
       id: 0,
       title: 'Edit Profile',
       arrow: true,
-      icon: <Ionicons name="person-outline" size={18} color="black" />,
+      icon: <UserEditICon size={18} color="black" />,
       textColor: 'black',
-      event: () => navigation.navigate(PathConstant.EDIT_PROFILE),
+      event: (): void => navigation.navigate(PathConstant.EDIT_PROFILE),
     },
     {
       id: 1,
       title: 'Logout',
       arrow: false,
-      icon: <MaterialIcons name="logout" size={18} color="red" />,
+      icon: <LogoutIcon size={18} color="red" />,
       textColor: 'red',
-      event: () => null,
+      event: (): void => {},
     },
   ];
-  const ProfileMenuItems: React.FC<IProfileMenuProps> = props => {
-    const {title, arrow, icon, textColor, event} = props;
+  const ProfileMenuItems: React.FC<IProfileMenuProps> = propsMenu => {
+    const {title, arrow, icon, textColor, event} = propsMenu;
     return (
       <Pressable onPress={event}>
-        {/* <View style={styles.menuItem}>
+        <View style={styles.menuItem}>
           <View style={styles.menuLeftArea}>
             {icon}
             <Text style={{fontSize: 15, color: textColor}}>{title}</Text>
           </View>
-          {arrow && (
-            <SimpleLineIcons name="arrow-right" size={18} color="black" />
-          )}
-        </View> */}
+          {arrow && <ArrowRightIcon size={18} color="black" />}
+        </View>
       </Pressable>
     );
   };
@@ -68,12 +66,7 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
       <View style={styles.profileArea}>
         <View>
           <Image source={images.avatar} style={styles.avatar} />
-          {/* <Entypo
-            name="edit"
-            size={20}
-            color="#232323"
-            style={styles.editIcon}
-          /> */}
+          <UserEditICon size={20} color="#232323" style={styles.editIcon} />
         </View>
         <Text numberOfLines={1} style={styles.userName}>
           Andrew Ainsley
