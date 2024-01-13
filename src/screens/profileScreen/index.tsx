@@ -1,7 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
-import {View, Text, SafeAreaView, FlatList, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  Pressable,
+  Image,
+} from 'react-native';
 import React from 'react';
-// import {imageList} from '../../utils/imageList';
 import {styles} from './styles';
 // import {Entypo} from '@expo/vector-icons';
 // import {Ionicons} from '@expo/vector-icons';
@@ -9,6 +15,7 @@ import {styles} from './styles';
 // import {MaterialIcons} from '@expo/vector-icons';
 import PathConstant from './../../navigation/PathConstant';
 import {NavigationProp} from '@react-navigation/native';
+import {images} from '../../assets';
 
 interface IProfileProps {
   navigation: NavigationProp<any, any>;
@@ -59,15 +66,15 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileArea}>
-        {/* <View>
-          <Image source={imageList.avatar} style={styles.avatar} />
-          <Entypo
+        <View>
+          <Image source={images.avatar} style={styles.avatar} />
+          {/* <Entypo
             name="edit"
             size={20}
             color="#232323"
             style={styles.editIcon}
-          />
-        </View> */}
+          /> */}
+        </View>
         <Text numberOfLines={1} style={styles.userName}>
           Andrew Ainsley
         </Text>
