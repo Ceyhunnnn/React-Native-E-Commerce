@@ -9,7 +9,7 @@ import Title from './../../components/title';
 import ProductCard from '../../components/prodcutCard';
 import PathConstant from '../../navigation/PathConstant';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {sliderImageList} from '../../const';
+import {sliderImageList} from '../../constant';
 
 interface IHomeProps {
   navigation: StackNavigationProp<any, any>;
