@@ -4,6 +4,7 @@ import PathConstant from './PathConstant';
 import LoginScreen from '../screens/loginScreen';
 import RegisterScreen from '../screens/registerScreen';
 import HomeLayout from './AppBottomStack';
+import EditProfile from '../screens/profileScreen/screens/editProfile';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,14 @@ const AppRoutes: React.FC = () => {
         options={{
           title: 'HomeLayout',
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={PathConstant.EDIT_PROFILE}
+        component={EditProfile}
+        options={{
+          title: 'Edit Profile',
+          headerBackTitle: 'Profile',
         }}
       />
     </Stack.Navigator>
