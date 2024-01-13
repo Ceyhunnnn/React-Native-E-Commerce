@@ -9,6 +9,7 @@ import Title from './../../components/title';
 import ProductCard from '../../components/prodcutCard';
 import PathConstant from '../../navigation/PathConstant';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {sliderImageList} from '../../const';
 
 interface IHomeProps {
   navigation: StackNavigationProp<any, any>;
@@ -28,7 +29,7 @@ const HomeScreen: React.FC<IHomeProps> = props => {
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
           <View style={{paddingBottom: 20}}>
-            <Slider />
+            <Slider imageList={sliderImageList} />
             <View style={styles.gridArea}>
               <CategoryCard
                 onPress={() =>
