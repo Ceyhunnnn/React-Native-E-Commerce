@@ -7,5 +7,6 @@ const PathConstant = {
   EDIT_PROFILE: 'editProfile',
   BASKET: 'basket',
   CATEGORY_PRODUCT: 'categoryProdcut',
+  PRODUCT_DETAIL: 'productDetail',
 };
 export default PathConstant;
