@@ -13,11 +13,11 @@ import {styles} from './styles';
 import {images} from '../../assets';
 import PathConstant from '../../navigation/PathConstant';
 import Logo from '../../components/logo';
-import {NavigationProp} from '@react-navigation/native';
 import Button from '../../components/button';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 interface ILoginProps {
-  navigation: NavigationProp<any, any>;
+  navigation: StackNavigationProp<any, any>;
 }
 
 const LoginScreen: React.FC<ILoginProps> = props => {

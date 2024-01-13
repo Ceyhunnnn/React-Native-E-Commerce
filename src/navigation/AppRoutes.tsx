@@ -5,10 +5,19 @@ import LoginScreen from '../screens/loginScreen';
 import RegisterScreen from '../screens/registerScreen';
 import HomeLayout from './AppBottomStack';
 import EditProfile from '../screens/profileScreen/screens/editProfile';
+import CategoryProductScreen from '../screens/categoryDetailScreen';
+
+export type RootStackParamList = {
+  LoginScreen: undefined;
+  RegisterScreen: undefined;
+  HomeLayout: undefined;
+  EditProfile: undefined;
+  CategoryProductScreen: {categoryName: string};
+};
 
 const Stack = createStackNavigator();
 
-const AppRoutes: React.FC = () => {
+const AppRoutes: React.FC<RootStackParamList> = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -41,6 +50,13 @@ const AppRoutes: React.FC = () => {
           title: 'Edit Profile',
           headerBackTitle: 'Profile',
         }}
+      />
+      <Stack.Screen
+        name={PathConstant.CATEGORY_PRODUCT}
+        options={{
+          headerBackTitle: 'Home',
+        }}
+        component={CategoryProductScreen}
       />
     </Stack.Navigator>
   );

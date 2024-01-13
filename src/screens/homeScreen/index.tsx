@@ -7,8 +7,15 @@ import Slider from './../../components/slider';
 import CategoryCard from './../../components/categoryCard';
 import Title from './../../components/title';
 import ProductCard from '../../components/prodcutCard';
+import PathConstant from '../../navigation/PathConstant';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const HomeScreen: React.FC = () => {
+interface IHomeProps {
+  navigation: StackNavigationProp<any, any>;
+}
+
+const HomeScreen: React.FC<IHomeProps> = props => {
+  const {navigation} = props;
   return (
     <SafeAreaView
       style={[
@@ -23,14 +30,13 @@ const HomeScreen: React.FC = () => {
           <View style={{paddingBottom: 20}}>
             <Slider />
             <View style={styles.gridArea}>
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
+              <CategoryCard
+                onPress={() =>
+                  navigation.navigate(PathConstant.CATEGORY_PRODUCT, {
+                    categoryName: 'Spor',
+                  })
+                }
+              />
             </View>
             <Title title="Discount Products" />
             <View style={styles.gridArea}>
