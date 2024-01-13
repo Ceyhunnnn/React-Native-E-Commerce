@@ -73,3 +73,23 @@ export const ArrowRightIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
+export const HeartIcon: React.FC<IIconsProps> = props => {
+  return (
+    <Ionicons
+      name="heart-outline"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+    />
+  );
+};
+export const WatchIcon: React.FC<IIconsProps> = props => {
+  return (
+    <Ionicons
+      name="watch-outline"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+    />
+  );
+};

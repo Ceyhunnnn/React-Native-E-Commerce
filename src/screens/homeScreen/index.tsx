@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import {SafeAreaView, Platform} from 'react-native';
+import {SafeAreaView, Platform, View, ScrollView} from 'react-native';
 import {styles} from './styles';
 import * as React from 'react';
-// import AppBar from './../../components/appBar';
-// import Slider from './../../components/slider';
-// import CategoryCard from './../../components/categoryCard';
-// import Title from './../../components/title';
-// import ProductCard from './../../components/productCard';
+import AppBar from './../../components/appBar';
+import Slider from './../../components/slider';
+import CategoryCard from './../../components/categoryCard';
+import Title from './../../components/title';
+import ProductCard from '../../components/prodcutCard';
 
 const HomeScreen: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const HomeScreen: React.FC = () => {
         styles.container,
         {paddingTop: Platform.OS === 'android' ? 25 : 0},
       ]}>
-      {/* <View style={styles.content}>
+      <View style={styles.content}>
         <AppBar />
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -43,7 +43,7 @@ const HomeScreen: React.FC = () => {
             </View>
           </View>
         </ScrollView>
-      </View> */}
+      </View>
     </SafeAreaView>
   );
 };

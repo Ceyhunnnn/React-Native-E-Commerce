@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 interface IButtonProps {
-  onPress: () => void;
+  onPress?: () => void;
   onLongPress?: () => void;
   title: string;
   iconLeft?: JSX.Element;

@@ -23,5 +23,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#ececec',
   },
+  totalText: {
+    fontSize: 14,
+  },
+  price: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
+  button: {gap: 5, marginHorizontal: 0},
 });
 export {styles};

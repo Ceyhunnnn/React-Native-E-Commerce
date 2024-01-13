@@ -1,8 +1,8 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-// import Ionicons from '@expo/vector-icons/Ionicons';
 import {images} from '../../assets';
+import {HeartIcon} from '../Icon';
 
 const ProductCard: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const ProductCard: React.FC = () => {
             <Image style={styles.prodcutImage} source={images.product} />
           </View>
           <View style={styles.heartIcon}>
-            {/* <Ionicons name="ios-heart-outline" size={23} color="black" /> */}
+            <HeartIcon size={23} color="black" />
           </View>
         </View>
         <View>

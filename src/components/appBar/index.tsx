@@ -2,10 +2,10 @@ import {View, Text, Image} from 'react-native';
 import {styles} from './styles';
 import React from 'react';
 import {images} from '../../assets';
-// import Ionicons from '@expo/vector-icons/Ionicons';
+import {HeartIcon} from '../Icon';
 
 const AppBar: React.FC = () => {
-  const date = new Date().toLocaleString().split(',')[0];
+  const date: string = new Date().toLocaleString().split(',')[0];
   return (
     <View style={styles.appBarArea}>
       <View style={styles.appBarUser}>
@@ -20,7 +20,7 @@ const AppBar: React.FC = () => {
         </View>
       </View>
       <View>
-        {/* <Ionicons name="ios-heart-outline" size={28} color="black" /> */}
+        <HeartIcon size={28} color="black" />
       </View>
     </View>
   );
