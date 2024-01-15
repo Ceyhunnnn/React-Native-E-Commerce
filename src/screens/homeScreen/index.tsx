@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import {SafeAreaView, Platform, View, ScrollView} from 'react-native';
+import {SafeAreaView, Platform, View, ScrollView, Text} from 'react-native';
 import {styles} from './styles';
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import AppBar from './../../components/appBar';
 import Slider from './../../components/slider';
 import CategoryCard from './../../components/categoryCard';
@@ -10,13 +10,28 @@ import ProductCard from '../../components/prodcutCard';
 import PathConstant from '../../navigation/PathConstant';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {sliderImageList} from '../../constant';
+import {useAppDispatch, useAppSelector} from '../../app/hook';
+import {fetchCategory} from '../../features/categories/categorySlice';
 
 interface IHomeProps {
   navigation: StackNavigationProp<any, any>;
 }
 
-const HomeScreen: React.FC<IHomeProps> = props => {
-  const {navigation} = props;
+const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
+  const dispatch = useAppDispatch();
+  const categoryStates = useAppSelector(state => state.category);
+  useEffect(() => {
+    if (!categoryStates.data) {
+      dispatch(fetchCategory());
+    }
+  }, [categoryStates.data, dispatch]);
+  if (categoryStates.loading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
   return (
     <SafeAreaView
       style={[
@@ -31,14 +46,20 @@ const HomeScreen: React.FC<IHomeProps> = props => {
           <View style={{paddingBottom: 20}}>
             <Slider imageList={sliderImageList} />
             <Title title="Categories" />
-            <View style={styles.gridArea}>
-              <CategoryCard
-                onPress={() =>
-                  navigation.navigate(PathConstant.CATEGORY_PRODUCT, {
-                    categoryName: 'Spor',
-                  })
-                }
-              />
+            <View style={styles.gridAreaCategory}>
+              {categoryStates.data &&
+                categoryStates.data?.map(cat => (
+                  <CategoryCard
+                    key={cat._id}
+                    title={cat.name}
+                    onPress={() =>
+                      navigation.navigate(PathConstant.CATEGORY_PRODUCT, {
+                        categoryName: cat.name,
+                      })
+                    }
+                  />
+                ))}
+              {categoryStates.error && <Text>{categoryStates.error}</Text>}
             </View>
             <Title title="Discount Products" />
             <View style={styles.gridArea}>

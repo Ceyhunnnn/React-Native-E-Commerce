@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     maxWidth: childWidth,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   icon: {

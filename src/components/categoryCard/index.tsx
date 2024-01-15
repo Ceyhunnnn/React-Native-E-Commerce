@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {View, Text, Pressable} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
@@ -15,7 +16,9 @@ const CategoryCard: React.FC<ICategoryProps> = props => {
       <View style={styles.icon}>
         <WatchIcon size={24} color="black" />
       </View>
-      <Text style={styles.categoryTitle}>Watch</Text>
+      <Text numberOfLines={2} style={styles.categoryTitle}>
+        {title}
+      </Text>
     </Pressable>
   );
 };
