@@ -12,6 +12,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {sliderImageList} from '../../constant';
 import {useAppDispatch, useAppSelector} from '../../app/hook';
 import {fetchCategory} from '../../features/categories/categorySlice';
+import LoadingView from '../../components/loading';
 
 interface IHomeProps {
   navigation: StackNavigationProp<any, any>;
@@ -26,11 +27,7 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
     }
   }, [categoryStates.data, dispatch]);
   if (categoryStates.loading) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <LoadingView />;
   }
   return (
     <SafeAreaView
