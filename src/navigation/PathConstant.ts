@@ -6,6 +6,7 @@ const PathConstant = {
   PROFILE: 'profile',
   EDIT_PROFILE: 'editProfile',
   BASKET: 'basket',
+  ORDERS: 'orders',
   CATEGORY_PRODUCT: 'categoryProdcut',
   PRODUCT_DETAIL: 'productDetail',
 };

@@ -1,11 +1,28 @@
-import axios from 'axios';
+import {Alert} from 'react-native';
+import axiosClient from './axios';
 
-const axiosClient = axios.create({
-  baseURL: 'http://localhost:3001/api/',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  },
-});
+interface IApiFunction {
+  type: string;
+  body?: any;
+  message?: boolean;
+  okButtonEvent?: () => void;
+}
 
-export default axiosClient;
+const apiCall = async (url: string, props: IApiFunction) => {
+  const {type = 'get', body, message = false, okButtonEvent} = props;
+  try {
+    const response = await axiosClient.request({
+      url,
+      method: type,
+      data: body,
+    });
+    return response;
+  } catch (error) {
+    if (message) {
+      Alert.alert('Error', 'Api error, please try again', [
+        {text: 'OK', onPress: okButtonEvent},
+      ]);
+    }
+  }
+};
+export default apiCall;

@@ -1,5 +1,5 @@
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import axiosClient from '../../service/api';
+import axiosClient from '../../service/axios';
 
 interface ICategoryState {
   data: IDiscountProduct[] | null;

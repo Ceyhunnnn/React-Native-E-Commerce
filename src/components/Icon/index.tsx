@@ -93,3 +93,14 @@ export const WatchIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
+
+export const OrdersIcon: React.FC<IIconsProps> = props => {
+  return (
+    <Feather
+      name="shopping-cart"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+    />
+  );
+};
