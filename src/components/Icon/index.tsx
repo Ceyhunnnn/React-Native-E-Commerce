@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {StyleProp, ViewStyle} from 'react-native';
 interface IIconsProps {
@@ -12,7 +13,7 @@ interface IIconsProps {
 
 export const HomeIcon: React.FC<IIconsProps> = props => {
   return (
-    <FontAwesome5
+    <AntDesign
       name="home"
       size={props.size}
       color={props.color}
@@ -23,8 +24,8 @@ export const HomeIcon: React.FC<IIconsProps> = props => {
 
 export const BasketIcon: React.FC<IIconsProps> = props => {
   return (
-    <FontAwesome5
-      name="shopping-basket"
+    <Feather
+      name="shopping-bag"
       size={props.size}
       color={props.color}
       style={props.style}
@@ -33,7 +34,7 @@ export const BasketIcon: React.FC<IIconsProps> = props => {
 };
 export const PersonIcon: React.FC<IIconsProps> = props => {
   return (
-    <Ionicons
+    <Octicons
       name="person"
       size={props.size}
       color={props.color}
