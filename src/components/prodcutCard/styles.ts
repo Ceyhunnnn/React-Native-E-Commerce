@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
   prodcutImageArea: {
     position: 'relative',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100%',
     justifyContent: 'center',
   },
   heartIcon: {
@@ -33,6 +35,16 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
   },
+  textArea: {
+    justifyContent: 'flex-start',
+    width: '95%',
+  },
+  priceTextArea: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
+  },
   productName: {
     marginVertical: 5,
     fontWeight: '600',
@@ -40,7 +52,10 @@ const styles = StyleSheet.create({
   productPrice: {
     fontWeight: '600',
     color: 'gray',
-    marginVertical: 5,
+  },
+  discount: {
+    color: 'red',
+    textDecorationLine: 'line-through',
   },
 });
 export {styles};

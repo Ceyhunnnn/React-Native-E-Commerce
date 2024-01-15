@@ -1,28 +1,49 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {images} from '../../assets';
 import {HeartIcon} from '../Icon';
 
-const ProductCard: React.FC = () => {
+interface IProductCard {
+  name: string;
+  price: number;
+  image: string;
+  discount: number;
+}
+const ProductCard: React.FC<IProductCard> = ({
+  name,
+  price,
+  image,
+  discount,
+}) => {
+  let discountTotal = price - price / discount;
+
   return (
     <>
       <View style={styles.productCard}>
         <View style={styles.productBg}>
           <View style={styles.prodcutImageArea}>
-            <Image style={styles.prodcutImage} source={images.product} />
+            <Image style={styles.prodcutImage} source={{uri: image}} />
           </View>
           <View style={styles.heartIcon}>
             <HeartIcon size={23} color="black" />
           </View>
         </View>
-        <View>
+        <View style={styles.textArea}>
           <Text numberOfLines={1} style={styles.productName}>
-            Apple Iphone 11 64 GB Red
+            {name}
           </Text>
-          <Text numberOfLines={1} style={styles.productPrice}>
-            $400
-          </Text>
+          <View style={styles.priceTextArea}>
+            <Text
+              numberOfLines={1}
+              style={discount > 0 ? styles.discount : styles.productPrice}>
+              $ {price}
+            </Text>
+            {discount > 0 && (
+              <Text numberOfLines={1} style={styles.productPrice}>
+                $ {discountTotal.toFixed(0)}
+              </Text>
+            )}
+          </View>
         </View>
       </View>
     </>

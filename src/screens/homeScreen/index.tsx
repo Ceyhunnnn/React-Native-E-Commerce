@@ -1,5 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import {SafeAreaView, Platform, View, ScrollView, Text} from 'react-native';
+import {
+  SafeAreaView,
+  Platform,
+  View,
+  ScrollView,
+  Text,
+  FlatList,
+} from 'react-native';
 import {styles} from './styles';
 import React, {useEffect} from 'react';
 import AppBar from './../../components/appBar';
@@ -13,6 +20,7 @@ import {sliderImageList} from '../../constant';
 import {useAppDispatch, useAppSelector} from '../../app/hook';
 import {fetchCategory} from '../../features/categories/categorySlice';
 import LoadingView from '../../components/loading';
+import {fetchDiscountProduct} from '../../features/discountProducts/discountProductSlice';
 
 interface IHomeProps {
   navigation: StackNavigationProp<any, any>;
@@ -21,11 +29,20 @@ interface IHomeProps {
 const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
   const dispatch = useAppDispatch();
   const categoryStates = useAppSelector(state => state.category);
+  const discountProdStates = useAppSelector(state => state.discountProd);
+  const getAllRequiredData = () => {
+    return Promise.all([
+      dispatch(fetchCategory()),
+      dispatch(fetchDiscountProduct()),
+    ]);
+  };
   useEffect(() => {
-    if (!categoryStates.data) {
-      dispatch(fetchCategory());
+    if (!categoryStates.data && !discountProdStates.data) {
+      getAllRequiredData();
     }
-  }, [categoryStates.data, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (categoryStates.loading) {
     return <LoadingView />;
   }
@@ -38,35 +55,56 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
       <View style={styles.content}>
         <AppBar />
         <ScrollView
+          style={{width: '100%'}}
+          nestedScrollEnabled={true}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
           <View style={{paddingBottom: 20}}>
             <Slider imageList={sliderImageList} />
             <Title title="Categories" />
-            <View style={styles.gridAreaCategory}>
-              {categoryStates.data &&
-                categoryStates.data?.map(cat => (
+            {categoryStates.data && (
+              <FlatList
+                nestedScrollEnabled={true}
+                scrollEnabled={false}
+                numColumns={4}
+                data={categoryStates.data}
+                renderItem={({item}) => (
                   <CategoryCard
-                    key={cat._id}
-                    title={cat.name}
+                    key={item._id}
+                    title={item.name}
                     onPress={() =>
                       navigation.navigate(PathConstant.CATEGORY_PRODUCT, {
-                        categoryName: cat.name,
+                        categoryName: item.name,
                       })
                     }
                   />
-                ))}
-              {categoryStates.error && <Text>{categoryStates.error}</Text>}
-            </View>
+                )}
+                keyExtractor={item => item._id}
+              />
+            )}
+            {categoryStates.error && <Text>{categoryStates.error}</Text>}
             <Title title="Discount Products" />
-            <View style={styles.gridArea}>
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-            </View>
+            {discountProdStates.data && (
+              <FlatList
+                nestedScrollEnabled={true}
+                scrollEnabled={false}
+                contentContainerStyle={{alignItems: 'center'}}
+                numColumns={2}
+                data={discountProdStates.data}
+                renderItem={({item}) => (
+                  <ProductCard
+                    name={item.name}
+                    price={item.price}
+                    image={item.cover_photo}
+                    discount={item.discount}
+                  />
+                )}
+                keyExtractor={item => item._id}
+              />
+            )}
+            {discountProdStates.error && (
+              <Text>{discountProdStates.error}</Text>
+            )}
           </View>
         </ScrollView>
       </View>
