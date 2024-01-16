@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import PathConstant from './PathConstant';
 import LoginScreen from '../screens/loginScreen';
 import RegisterScreen from '../screens/registerScreen';
 import HomeLayout from './AppBottomStack';
@@ -9,21 +8,24 @@ import CategoryProductScreen from '../screens/categoryDetailScreen';
 import ProductDetailScreen from '../screens/productDetailScreen';
 
 export type RootStackParamList = {
-  LoginScreen: undefined;
-  RegisterScreen: undefined;
-  HomeLayout: undefined;
-  EditProfile: undefined;
-  CategoryProductScreen: {categoryName: string};
-  ProductDetailScreen: undefined;
+  login: undefined;
+  register: undefined;
+  home: undefined;
+  homelayout: undefined;
+  profile: undefined;
+  editProfile: undefined;
+  basket: undefined;
+  orders: undefined;
+  categoryProduct: {categoryName: string};
+  productDetail: undefined;
 };
 
-const Stack = createStackNavigator();
-
-const AppRoutes: React.FC<RootStackParamList> = () => {
+const Stack = createStackNavigator<RootStackParamList>();
+const AppRoutes: React.FC<{}> = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={PathConstant.LOGIN}
+        name="login"
         options={{
           headerShown: false,
           title: 'Login',
@@ -31,14 +33,14 @@ const AppRoutes: React.FC<RootStackParamList> = () => {
         component={LoginScreen}
       />
       <Stack.Screen
-        name={PathConstant.REGISTER}
+        name="register"
         component={RegisterScreen}
         options={{
           title: 'Register',
         }}
       />
       <Stack.Screen
-        name={PathConstant.HOME_LAYOUT}
+        name="homelayout"
         component={HomeLayout}
         options={{
           title: 'HomeLayout',
@@ -46,7 +48,7 @@ const AppRoutes: React.FC<RootStackParamList> = () => {
         }}
       />
       <Stack.Screen
-        name={PathConstant.EDIT_PROFILE}
+        name="editProfile"
         component={EditProfile}
         options={{
           title: 'Edit Profile',
@@ -54,14 +56,14 @@ const AppRoutes: React.FC<RootStackParamList> = () => {
         }}
       />
       <Stack.Screen
-        name={PathConstant.CATEGORY_PRODUCT}
+        name="categoryProduct"
         options={{
           headerBackTitle: 'Home',
         }}
         component={CategoryProductScreen}
       />
       <Stack.Screen
-        name={PathConstant.PRODUCT_DETAIL}
+        name="productDetail"
         options={({route}) => ({
           headerBackTitle: route.key,
         })}

@@ -7,8 +7,8 @@ import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/AppRoutes';
 
 interface ICategoryProps {
-  navigation?: StackNavigationProp<RootStackParamList, 'CategoryProductScreen'>;
-  route?: RouteProp<RootStackParamList, 'CategoryProductScreen'>;
+  navigation?: StackNavigationProp<RootStackParamList, 'categoryProduct'>;
+  route?: RouteProp<RootStackParamList, 'categoryProduct'>;
 }
 const CategoryProductScreen: React.FC<ICategoryProps> = props => {
   const {navigation, route} = props;
@@ -23,16 +23,15 @@ const CategoryProductScreen: React.FC<ICategoryProps> = props => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.gridArea}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard
+            name={''}
+            price={0}
+            image={''}
+            discount={0}
+            onPress={() => {
+              navigation?.navigate('productDetail');
+            }}
+          />
         </View>
       </ScrollView>
     </View>

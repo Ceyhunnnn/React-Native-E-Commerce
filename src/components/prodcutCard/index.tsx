@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {HeartIcon} from '../Icon';
@@ -8,12 +8,14 @@ interface IProductCard {
   price: number;
   image: string;
   discount: number;
+  onPress: () => void;
 }
 const ProductCard: React.FC<IProductCard> = ({
   name,
   price,
   image,
   discount,
+  onPress,
 }) => {
   let discountTotal = price - price / discount;
 
@@ -21,14 +23,14 @@ const ProductCard: React.FC<IProductCard> = ({
     <>
       <View style={styles.productCard}>
         <View style={styles.productBg}>
-          <View style={styles.prodcutImageArea}>
+          <Pressable style={styles.prodcutImageArea} onPress={onPress}>
             <Image style={styles.prodcutImage} source={{uri: image}} />
-          </View>
+          </Pressable>
           <View style={styles.heartIcon}>
             <HeartIcon size={23} color="black" />
           </View>
         </View>
-        <View style={styles.textArea}>
+        <Pressable style={styles.textArea} onPress={onPress}>
           <Text numberOfLines={1} style={styles.productName}>
             {name}
           </Text>
@@ -44,7 +46,7 @@ const ProductCard: React.FC<IProductCard> = ({
               </Text>
             )}
           </View>
-        </View>
+        </Pressable>
       </View>
     </>
   );

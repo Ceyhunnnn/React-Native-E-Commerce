@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import PathConstant from './PathConstant';
 import HomeScreen from '../screens/homeScreen';
 import BasketScreen from '../screens/basketScreen';
 import ProfileScreen from '../screens/profileScreen';
@@ -13,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const HomeLayout: React.FC = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name={PathConstant.HOME}
+      name="home"
       options={{
         headerShown: false,
         tabBarLabel: 'Home',
@@ -22,7 +21,7 @@ const HomeLayout: React.FC = () => (
       component={HomeScreen}
     />
     <Tab.Screen
-      name={PathConstant.BASKET}
+      name="basket"
       options={{
         title: 'Basket',
         tabBarLabel: 'Basket',
@@ -31,7 +30,7 @@ const HomeLayout: React.FC = () => (
       component={BasketScreen}
     />
     <Tab.Screen
-      name={PathConstant.ORDERS}
+      name="orders"
       options={{
         title: 'My Orders',
         tabBarLabel: 'My Orders',
@@ -40,7 +39,7 @@ const HomeLayout: React.FC = () => (
       component={OrdersScreen}
     />
     <Tab.Screen
-      name={PathConstant.PROFILE}
+      name="profile"
       options={{
         title: 'Profile',
         tabBarLabel: 'Profile',

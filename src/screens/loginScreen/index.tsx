@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {styles} from './styles';
 import {images} from '../../assets';
-import PathConstant from '../../navigation/PathConstant';
 import Logo from '../../components/logo';
 import Button from '../../components/button';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -24,10 +23,10 @@ const LoginScreen: React.FC<ILoginProps> = props => {
   const {navigation} = props;
 
   const login = (): void => {
-    navigation.navigate(PathConstant.HOME_LAYOUT);
+    navigation.navigate('homelayout');
   };
   const navigateToRegister = (): void => {
-    navigation.navigate(PathConstant.REGISTER);
+    navigation.navigate('register');
   };
   return (
     <KeyboardAvoidingView

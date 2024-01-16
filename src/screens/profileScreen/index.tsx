@@ -12,7 +12,6 @@ import React from 'react';
 import {styles} from './styles';
 // import {SimpleLineIcons} from '@expo/vector-icons';
 // import {MaterialIcons} from '@expo/vector-icons';
-import PathConstant from './../../navigation/PathConstant';
 import {NavigationProp} from '@react-navigation/native';
 import {images} from '../../assets';
 import {ArrowRightIcon, LogoutIcon, UserEditICon} from '../../components/Icon';
@@ -36,7 +35,7 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
       arrow: true,
       icon: <UserEditICon size={18} color="black" />,
       textColor: 'black',
-      event: (): void => navigation.navigate(PathConstant.EDIT_PROFILE),
+      event: (): void => navigation.navigate('editProfile'),
     },
     {
       id: 1,

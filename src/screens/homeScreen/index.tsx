@@ -14,7 +14,6 @@ import Slider from './../../components/slider';
 import CategoryCard from './../../components/categoryCard';
 import Title from './../../components/title';
 import ProductCard from '../../components/prodcutCard';
-import PathConstant from '../../navigation/PathConstant';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {sliderImageList} from '../../constant';
 import {useAppDispatch, useAppSelector} from '../../app/hook';
@@ -73,7 +72,7 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
                     key={item._id}
                     title={item.name}
                     onPress={() =>
-                      navigation.navigate(PathConstant.CATEGORY_PRODUCT, {
+                      navigation.navigate('categoryProduct', {
                         categoryName: item.name,
                       })
                     }
@@ -97,6 +96,9 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
                     price={item.price}
                     image={item.cover_photo}
                     discount={item.discount}
+                    onPress={function (): void {
+                      null;
+                    }}
                   />
                 )}
                 keyExtractor={item => item._id}
