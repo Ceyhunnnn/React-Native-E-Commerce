@@ -20,9 +20,10 @@ import {useAppDispatch, useAppSelector} from '../../app/hook';
 import {fetchCategory} from '../../features/categories/categorySlice';
 import LoadingView from '../../components/loading';
 import {fetchDiscountProduct} from '../../features/discountProducts/discountProductSlice';
+import {RootStackParamList} from '../../navigation/AppRoutes';
 
 interface IHomeProps {
-  navigation: StackNavigationProp<any, any>;
+  navigation: StackNavigationProp<RootStackParamList, 'home'>;
 }
 
 const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
@@ -74,6 +75,7 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
                     onPress={() =>
                       navigation.navigate('categoryProduct', {
                         categoryName: item.name,
+                        categoryId: item._id,
                       })
                     }
                   />
@@ -96,8 +98,8 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
                     price={item.price}
                     image={item.cover_photo}
                     discount={item.discount}
-                    onPress={function (): void {
-                      null;
+                    onPress={(): void => {
+                      navigation.navigate('productDetail');
                     }}
                   />
                 )}

@@ -6,13 +6,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingBottom: 20,
   },
-  gridArea: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    marginVertical: -6,
-    marginHorizontal: -6,
+  content: {
+    paddingHorizontal: 10,
+    alignItems: 'center',
   },
 });
 export {styles};

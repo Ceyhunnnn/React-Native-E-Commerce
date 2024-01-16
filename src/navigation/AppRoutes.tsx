@@ -16,7 +16,7 @@ export type RootStackParamList = {
   editProfile: undefined;
   basket: undefined;
   orders: undefined;
-  categoryProduct: {categoryName: string};
+  categoryProduct: {categoryName: string; categoryId: string};
   productDetail: undefined;
 };
 
