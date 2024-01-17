@@ -7,7 +7,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import {StyleProp, ViewStyle} from 'react-native';
 interface IIconsProps {
   size: number;
-  color: string;
+  color?: string;
   style?: StyleProp<ViewStyle>;
 }
 

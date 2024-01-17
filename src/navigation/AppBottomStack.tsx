@@ -17,6 +17,7 @@ const HomeLayout: React.FC = () => (
         headerShown: false,
         tabBarLabel: 'Home',
         tabBarIcon: ({color, size}) => <HomeIcon color={color} size={size} />,
+        tabBarActiveTintColor: 'black',
       }}
       component={HomeScreen}
     />
@@ -26,6 +27,7 @@ const HomeLayout: React.FC = () => (
         title: 'Basket',
         tabBarLabel: 'Basket',
         tabBarIcon: ({color, size}) => <BasketIcon size={size} color={color} />,
+        tabBarActiveTintColor: 'black',
       }}
       component={BasketScreen}
     />
@@ -34,7 +36,10 @@ const HomeLayout: React.FC = () => (
       options={{
         title: 'My Orders',
         tabBarLabel: 'My Orders',
-        tabBarIcon: ({color, size}) => <OrdersIcon size={size} color={color} />,
+        tabBarIcon: ({color, size}) => {
+          return <OrdersIcon size={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'black',
       }}
       component={OrdersScreen}
     />
@@ -44,6 +49,7 @@ const HomeLayout: React.FC = () => (
         title: 'Profile',
         tabBarLabel: 'Profile',
         tabBarIcon: ({color, size}) => <PersonIcon size={size} color={color} />,
+        tabBarActiveTintColor: 'black',
       }}
       component={ProfileScreen}
     />
