@@ -39,7 +39,7 @@ const discountProductSlice = createSlice({
     );
     builder.addCase(fetchDiscountProduct.rejected, state => {
       state.loading = false;
-      state.error = 'Error From Api';
+      state.error = 'Discounted products cannot be loaded';
     });
   },
 });

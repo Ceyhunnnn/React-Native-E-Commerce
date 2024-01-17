@@ -41,7 +41,7 @@ const categorySlice = createSlice({
     );
     builder.addCase(fetchCategory.rejected, state => {
       state.loading = false;
-      state.error = 'Error From Api';
+      state.error = 'Unable to load categories';
     });
   },
 });
