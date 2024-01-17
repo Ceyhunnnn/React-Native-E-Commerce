@@ -3,4 +3,5 @@ export const images = {
   avatar: require('./../assets/images/avatar.png'),
   logo: require('./../assets/images/logo.png'),
   phone: require('./../assets/images/phone.png'),
+  empty: require('./../assets/images/empty.png'),
 };
