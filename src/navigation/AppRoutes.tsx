@@ -6,6 +6,7 @@ import HomeLayout from './AppBottomStack';
 import EditProfile from '../screens/profileScreen/screens/editProfile';
 import CategoryProductScreen from '../screens/categoryDetailScreen';
 import ProductDetailScreen from '../screens/productDetailScreen';
+import {IProductDetailData} from '../screens/categoryDetailScreen/types';
 
 export type RootStackParamList = {
   login: undefined;
@@ -17,7 +18,7 @@ export type RootStackParamList = {
   basket: undefined;
   orders: undefined;
   categoryProduct: {categoryName: string; categoryId: string};
-  productDetail: undefined;
+  productDetail: {detail: IProductDetailData};
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -65,7 +66,9 @@ const AppRoutes: React.FC<{}> = () => {
       <Stack.Screen
         name="productDetail"
         options={({route}) => ({
-          headerBackTitle: route.key,
+          title: route.params.detail.name,
+          headerBackTitleVisible: false,
+          headerTintColor: 'black',
         })}
         component={ProductDetailScreen}
       />

@@ -99,7 +99,7 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
                     image={item.cover_photo}
                     discount={item.discount}
                     onPress={(): void => {
-                      navigation.navigate('productDetail');
+                      navigation.navigate('productDetail', {detail: item});
                     }}
                   />
                 )}

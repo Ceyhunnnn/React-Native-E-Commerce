@@ -62,7 +62,7 @@ const CategoryProductScreen: React.FC<ICategoryProps> = props => {
                 image={item.cover_photo}
                 discount={item.discount}
                 onPress={(): void => {
-                  navigation?.navigate('productDetail');
+                  navigation?.navigate('productDetail', {detail: item});
                 }}
               />
             )}

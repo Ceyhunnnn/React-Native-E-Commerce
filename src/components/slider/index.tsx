@@ -8,6 +8,9 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  StyleProp,
+  ViewStyle,
+  ImageStyle,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -20,10 +23,11 @@ interface ISliderImages {
 
 interface ISliderProps {
   imageList: ISliderImages[];
+  customStyle?: StyleProp<ImageStyle>;
 }
 
 const Slider: React.FC<ISliderProps> = props => {
-  const {imageList} = props;
+  const {imageList, customStyle} = props;
   const [activeImg, setActiveImage] = useState(0);
   const onImageChange = (
     nativeEvent: NativeSyntheticEvent<NativeScrollEvent>,
@@ -40,18 +44,18 @@ const Slider: React.FC<ISliderProps> = props => {
   };
   return (
     <View style={styles.sliderArea}>
-      <View style={styles.sliderWrap}>
+      <View style={[styles.sliderWrap, customStyle]}>
         <ScrollView
           scrollEventThrottle={16}
           onScroll={nativeEvent => onImageChange(nativeEvent)}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           horizontal
-          style={styles.sliderWrap}>
+          style={[styles.sliderWrap, customStyle]}>
           {imageList.map((image, index) => {
             return (
               <Image
-                style={styles.sliderWrap}
+                style={[styles.sliderWrap, customStyle]}
                 source={{
                   uri: image.img,
                 }}
