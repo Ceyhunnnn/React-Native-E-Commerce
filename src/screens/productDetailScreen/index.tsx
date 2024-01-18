@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Pressable, Text, View} from 'react-native';
 import Slider from '../../components/slider';
-import {sliderImageList} from '../../constant';
 import {styles} from './styles';
 import {RootStackParamList} from '../../navigation/AppRoutes';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -11,6 +10,10 @@ import Button from '../../components/button';
 interface IProductDetail {
   navigation?: StackNavigationProp<RootStackParamList, 'productDetail'>;
   route: RouteProp<RootStackParamList, 'productDetail'>;
+}
+interface IImageList {
+  id: number;
+  img: string;
 }
 
 const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
@@ -27,9 +30,14 @@ const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
   const upQuantity = () => {
     setQuantity(prevState => prevState + 1);
   };
+  const imageList: IImageList[] = [
+    {id: 0, img: productData.cover_photo},
+    {id: 1, img: productData.cover_photo},
+    {id: 2, img: productData.cover_photo},
+  ];
   return (
     <View style={styles.container}>
-      <Slider imageList={sliderImageList} customStyle={styles.sliderArea} />
+      <Slider imageList={imageList} customStyle={styles.sliderArea} />
       <View style={styles.productArea}>
         <Text style={styles.productName}>{productData?.name}</Text>
         <View style={styles.divider} />
