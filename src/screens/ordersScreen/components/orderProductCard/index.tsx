@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import OrderProduct from '../orderProduct';
+import {IProductList} from '../../types';
 
 interface IOrderProductCard {
   createdDate: string;
   totalPrice: number;
+  productList: IProductList[];
 }
 
 const OrderProductCard: React.FC<IOrderProductCard> = () => {

@@ -1,14 +1,10 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {images} from '../../../../assets';
 import React from 'react';
+import {IProductList} from '../../types';
 
 interface IOrderProductProps {
   productList: IProductList[];
-}
-interface IProductList {
-  name: string;
-  price: number;
-  image: string;
 }
 
 const OrderProduct: React.FC<IOrderProductProps> = () => {
