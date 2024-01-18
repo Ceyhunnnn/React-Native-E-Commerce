@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     position: 'relative',
-    paddingBottom: 80,
   },
   checkoutArea: {
     position: 'absolute',
