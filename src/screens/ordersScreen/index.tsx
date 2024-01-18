@@ -1,10 +1,12 @@
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import EmptyDataComponent from '../../components/emptyData';
+import {ScrollView} from 'react-native-gesture-handler';
+import OrderProductCard from './components/orderProductCard';
 
 const OrdersScreen: React.FC<{}> = () => {
-  const haveOrder: boolean = true;
+  const haveOrder: boolean = false;
   return (
     <View style={styles.content}>
       {haveOrder ? (
@@ -13,7 +15,9 @@ const OrdersScreen: React.FC<{}> = () => {
           desc="You don't have an ongoing orders at this time"
         />
       ) : (
-        <Text>orders</Text>
+        <ScrollView>
+          <OrderProductCard createdDate={''} totalPrice={0} />
+        </ScrollView>
       )}
     </View>
   );
