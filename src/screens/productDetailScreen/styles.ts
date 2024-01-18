@@ -78,21 +78,41 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'white',
     width: '100%',
-    height: 80,
+    height: 100,
     paddingHorizontal: 20,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 20,
+    borderTopWidth: 2,
+    borderTopColor: '#eaeaea',
   },
   button: {gap: 0, marginHorizontal: 0},
   totalText: {
-    fontSize: 14,
+    fontSize: 13,
+    color: 'gray',
   },
   price: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '700',
+  },
+  priceTextArea: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
+  },
+
+  productPrice: {
+    fontWeight: '600',
+    color: 'gray',
+    fontSize: 18,
+  },
+  discount: {
+    color: 'red',
+    fontSize: 18,
+    textDecorationLine: 'line-through',
   },
 });
 export {styles};

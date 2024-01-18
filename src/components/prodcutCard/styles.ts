@@ -45,10 +45,7 @@ const styles = StyleSheet.create({
     gap: 5,
     alignItems: 'center',
   },
-  productName: {
-    marginVertical: 5,
-    fontWeight: '600',
-  },
+
   productPrice: {
     fontWeight: '600',
     color: 'gray',

@@ -10,12 +10,15 @@ import Button from '../../components/button';
 
 interface IProductDetail {
   navigation?: StackNavigationProp<RootStackParamList, 'productDetail'>;
-  route?: RouteProp<RootStackParamList, 'productDetail'>;
+  route: RouteProp<RootStackParamList, 'productDetail'>;
 }
 
 const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
   const [quantity, setQuantity] = useState<number>(1);
   const productData = route?.params.detail;
+  let discountTotal =
+    productData.price - productData.price / productData?.discount;
+
   const downQuantity = () => {
     if (quantity !== 1) {
       setQuantity(prevState => prevState - 1);
@@ -31,7 +34,12 @@ const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
         <Text style={styles.productName}>{productData?.name}</Text>
         <View style={styles.divider} />
         <Text style={styles.propsTitle}>Description</Text>
-        <Text style={styles.desc}>{productData?.description}</Text>
+        <Text style={styles.desc}>
+          {productData?.description} Lorem Ipsum is simply dummy text of the
+          printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took
+          a galley of type and scrambled it to make a type specimen book.
+        </Text>
         <Text style={styles.propsTitle}>Color</Text>
         <View style={styles.colorArea}>
           {productData?.colors.map(color => (
@@ -57,7 +65,20 @@ const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
       <View style={styles.priceContainer}>
         <View>
           <Text style={styles.totalText}>total price</Text>
-          <Text style={styles.price}>${productData?.price}</Text>
+          <View style={styles.priceTextArea}>
+            <Text
+              numberOfLines={1}
+              style={
+                productData.discount > 0 ? styles.discount : styles.productPrice
+              }>
+              $ {productData.price}
+            </Text>
+            {productData.discount > 0 && (
+              <Text numberOfLines={1} style={styles.productPrice}>
+                $ {discountTotal.toFixed(0)}
+              </Text>
+            )}
+          </View>
         </View>
         <Button title={'Add to Basket'} style={styles.button} />
       </View>
