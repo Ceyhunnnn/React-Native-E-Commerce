@@ -7,5 +7,4 @@ const axiosClient = axios.create({
     'Access-Control-Allow-Origin': '*',
   },
 });
-
 export default axiosClient;

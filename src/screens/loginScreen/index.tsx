@@ -19,6 +19,8 @@ import {initialValues, loginValidation} from './validate';
 import ErrorText from '../../components/errorText';
 import apiCall from '../../service/api';
 import {ILoginType} from '../../types/auth';
+import TokenService from '../../service/tokenService';
+import axiosClient from '../../service/axios';
 
 interface ILoginProps {
   navigation: StackNavigationProp<any, any>;
@@ -26,11 +28,12 @@ interface ILoginProps {
 
 const LoginScreen: React.FC<ILoginProps> = props => {
   const {navigation} = props;
-
   const login = async (values: ILoginType): Promise<void> => {
     await apiCall('login', {body: values, type: 'post', message: true}).then(
-      res => {
+      async res => {
         if (res?.data.success) {
+          await TokenService.setToken(res.data.token);
+          axiosClient.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
           navigation.navigate('homelayout');
         }
       },
