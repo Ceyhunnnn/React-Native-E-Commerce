@@ -14,6 +14,11 @@ import {images} from '../../assets';
 import Logo from '../../components/logo';
 import Button from '../../components/button';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {Formik} from 'formik';
+import {initialValues, loginValidation} from './validate';
+import ErrorText from '../../components/errorText';
+import apiCall from '../../service/api';
+import {ILoginType} from '../../types/auth';
 
 interface ILoginProps {
   navigation: StackNavigationProp<any, any>;
@@ -22,8 +27,14 @@ interface ILoginProps {
 const LoginScreen: React.FC<ILoginProps> = props => {
   const {navigation} = props;
 
-  const login = (): void => {
-    navigation.navigate('homelayout');
+  const login = async (values: ILoginType): Promise<void> => {
+    await apiCall('login', {body: values, type: 'post', message: true}).then(
+      res => {
+        if (res?.data.success) {
+          navigation.navigate('homelayout');
+        }
+      },
+    );
   };
   const navigateToRegister = (): void => {
     navigation.navigate('register');
@@ -40,21 +51,40 @@ const LoginScreen: React.FC<ILoginProps> = props => {
           <View style={styles.logoArea}>
             <Logo />
           </View>
-          <View style={styles.inputArea}>
-            <TextInput
-              placeholderTextColor="gray"
-              placeholder="Email Address"
-              style={styles.input}
-              keyboardType="email-address"
-            />
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="gray"
-              style={styles.input}
-              secureTextEntry={true}
-            />
-            <Button title="Log In" onPress={login} />
-          </View>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={loginValidation}
+            onSubmit={values => login(values)}>
+            {({handleChange, handleBlur, values, errors, handleSubmit}) => (
+              <View>
+                <TextInput
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  placeholderTextColor="gray"
+                  placeholder="Email Address"
+                  style={styles.input}
+                  keyboardType="email-address"
+                />
+                {errors.email && <ErrorText text={errors.email} />}
+                <TextInput
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  placeholder="Password"
+                  placeholderTextColor="gray"
+                  style={styles.input}
+                  secureTextEntry={true}
+                />
+                {errors.password && <ErrorText text={errors.password} />}
+                <Button
+                  title="Log In"
+                  onPress={handleSubmit}
+                  style={styles.buttonSpace}
+                />
+              </View>
+            )}
+          </Formik>
         </View>
         <View style={styles.account}>
           <Text> Don't have an account ?</Text>

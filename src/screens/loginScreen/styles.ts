@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 0.5,
     marginHorizontal: 20,
+    marginVertical: 10,
     padding: 10,
     borderRadius: 10,
     borderColor: 'gray',
@@ -49,6 +50,9 @@ const styles = StyleSheet.create({
   register: {
     marginLeft: 5,
     color: '#b43b29',
+  },
+  buttonSpace: {
+    marginTop: 10,
   },
 });
 export {styles};

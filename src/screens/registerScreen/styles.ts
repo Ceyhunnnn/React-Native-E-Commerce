@@ -18,18 +18,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 20,
   },
-  inputArea: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
-  },
   input: {
     height: 40,
     borderWidth: 0.5,
     marginHorizontal: 20,
+    marginVertical: 10,
     padding: 10,
     borderRadius: 10,
     borderColor: 'gray',
   },
+  buttonSpace: {marginTop: 10},
 });
 export {styles};

@@ -17,9 +17,9 @@ const apiCall = async (url: string, props: IApiFunction) => {
       data: body,
     });
     return response;
-  } catch (error) {
+  } catch (error: any) {
     if (message) {
-      Alert.alert('Error', 'Api error, please try again', [
+      Alert.alert('Error', error?.response?.data.message, [
         {text: 'OK', onPress: okButtonEvent},
       ]);
     }
