@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
-  Alert,
 } from 'react-native';
 import React from 'react';
 import {styles} from './styles';
@@ -16,6 +15,7 @@ import {IRegisterType} from '../../types/auth';
 import {initialValues, registerValidation} from './validation';
 import ErrorText from '../../components/errorText';
 import apiCall from '../../service/api';
+import CustomAlert from '../../components/alert';
 
 interface IRegisterProps {
   navigation: NavigationProp<any, any>;
@@ -30,9 +30,11 @@ const RegisterScreen: React.FC<IRegisterProps> = props => {
       message: true,
     }).then(res => {
       if (res?.data.success) {
-        Alert.alert('User saved', 'register is successfull', [
-          {text: 'OK', onPress: () => navigation.goBack()},
-        ]);
+        CustomAlert({
+          title: 'User saved',
+          desc: 'register is successfull',
+          onPress: () => navigation.goBack(),
+        });
       }
     });
   };
