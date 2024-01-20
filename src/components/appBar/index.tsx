@@ -3,8 +3,10 @@ import {styles} from './styles';
 import React from 'react';
 import {images} from '../../assets';
 import {HeartIcon} from '../Icon';
+import {useAppSelector} from '../../app/hook';
 
 const AppBar: React.FC = () => {
+  const userStates = useAppSelector(state => state.user.data);
   const date: string = new Date().toLocaleString().split(',')[0];
   return (
     <View style={styles.appBarArea}>
@@ -12,7 +14,7 @@ const AppBar: React.FC = () => {
         <Image style={styles.avatar} source={images.avatar} />
         <View style={styles.textArea}>
           <Text style={styles.userName} numberOfLines={1}>
-            Ceyhun Gul
+            {userStates?.name} {userStates?.lastName}
           </Text>
           <Text style={styles.date} numberOfLines={1}>
             {date}

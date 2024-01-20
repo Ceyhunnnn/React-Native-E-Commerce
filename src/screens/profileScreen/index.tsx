@@ -15,6 +15,7 @@ import {styles} from './styles';
 import {NavigationProp} from '@react-navigation/native';
 import {images} from '../../assets';
 import {ArrowRightIcon, LogoutIcon, UserEditICon} from '../../components/Icon';
+import {useAppSelector} from '../../app/hook';
 
 interface IProfileProps {
   navigation: NavigationProp<any, any>;
@@ -27,6 +28,7 @@ interface IProfileMenuProps {
   event: () => void;
 }
 const ProfileScreen: React.FC<IProfileProps> = props => {
+  const userStates = useAppSelector(state => state.user);
   const {navigation} = props;
   const menuItemList = [
     {
@@ -68,9 +70,9 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
           <UserEditICon size={20} color="#232323" style={styles.editIcon} />
         </View>
         <Text numberOfLines={1} style={styles.userName}>
-          Andrew Ainsley
+          {userStates.data?.name} {userStates.data?.lastName}
         </Text>
-        <Text style={styles.userPhone}>+90 555 555 5555</Text>
+        <Text style={styles.userPhone}>{userStates.data?.email}</Text>
       </View>
       <FlatList
         style={styles.menuArea}

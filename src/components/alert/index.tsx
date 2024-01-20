@@ -9,7 +9,7 @@ interface ICustomProps {
 const CustomAlert = ({title, desc, onPress}: ICustomProps) => {
   return Alert.alert(title, desc, [
     {
-      text: 'text',
+      text: 'Ok',
       onPress: onPress,
     },
   ]);

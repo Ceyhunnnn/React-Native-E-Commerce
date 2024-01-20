@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginBottom: 30,
+    paddingBottom: 10,
   },
   formArea: {
     gap: 10,

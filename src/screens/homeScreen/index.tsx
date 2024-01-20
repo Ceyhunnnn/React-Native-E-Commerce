@@ -21,6 +21,7 @@ import {fetchCategory} from '../../features/categories/categorySlice';
 import LoadingView from '../../components/loading';
 import {fetchDiscountProduct} from '../../features/discountProducts/discountProductSlice';
 import {RootStackParamList} from '../../navigation/AppRoutes';
+import {getUserData} from '../../modules/user';
 
 interface IHomeProps {
   navigation: StackNavigationProp<RootStackParamList, 'home'>;
@@ -30,14 +31,17 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
   const dispatch = useAppDispatch();
   const categoryStates = useAppSelector(state => state.category);
   const discountProdStates = useAppSelector(state => state.discountProd);
-  const getAllRequiredData = () => {
-    return Promise.all([
+  const userStates = useAppSelector(state => state.user);
+  const getAllRequiredData = async () => {
+    const promiseList = [
       dispatch(fetchCategory()),
       dispatch(fetchDiscountProduct()),
-    ]);
+      getUserData(),
+    ];
+    return await Promise.all(promiseList);
   };
   useEffect(() => {
-    if (!categoryStates.data && !discountProdStates.data) {
+    if (!categoryStates.data && !discountProdStates.data && !userStates.data) {
       getAllRequiredData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

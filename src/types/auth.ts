@@ -4,7 +4,7 @@ export interface ILoginType {
 }
 export interface IRegisterType {
   name: string;
-  surname: string;
+  lastName: string;
   email: string;
   password: string;
 }

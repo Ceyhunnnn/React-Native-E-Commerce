@@ -1,13 +1,17 @@
 import {View, ScrollView, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {styles} from './styles';
 import BasketCard from '../../components/basketCard';
 import Button from './../../components/button';
 import {ArrowRightIcon} from '../../components/Icon';
 import EmptyDataComponent from '../../components/emptyData';
+import {getBasketData} from '../../modules/basket';
 
 const BasketScreen: React.FC = () => {
   const haveProduct: boolean = true;
+  useEffect(() => {
+    getBasketData();
+  }, []);
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <View style={[styles.container, haveProduct ? {paddingBottom: 80} : {}]}>

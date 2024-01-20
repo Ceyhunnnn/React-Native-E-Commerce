@@ -64,14 +64,14 @@ const RegisterScreen: React.FC<IRegisterProps> = props => {
                 />
                 {errors.name && <ErrorText text={errors.name} />}
                 <TextInput
-                  onChangeText={handleChange('surname')}
-                  onBlur={handleBlur('surname')}
-                  value={values.surname}
+                  onChangeText={handleChange('lastName')}
+                  onBlur={handleBlur('lastName')}
+                  value={values.lastName}
                   placeholderTextColor="gray"
                   placeholder="Surname"
                   style={styles.input}
                 />
-                {errors.surname && <ErrorText text={errors.surname} />}
+                {errors.lastName && <ErrorText text={errors.lastName} />}
                 <TextInput
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
