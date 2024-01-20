@@ -1,12 +1,20 @@
 export interface IBasketData {
-  success: boolean;
-  data: {
-    _id: string;
-    userId: string;
-    basketList: any[];
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-  }[];
-  message: string;
+  _id: string;
+  name: string;
+  description: string;
+  cover_photo: string;
+  price: number;
+  stock: number;
+  discount: number;
+  colors: Color[];
+  photos: any[];
+  categoryId: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  quantity: number;
+}
+interface Color {
+  name: string;
+  id: string;
 }

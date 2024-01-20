@@ -1,26 +1,37 @@
-import {View, ScrollView, Text} from 'react-native';
-import React, {useEffect} from 'react';
+import {View, Text, FlatList} from 'react-native';
+import React from 'react';
 import {styles} from './styles';
 import BasketCard from '../../components/basketCard';
 import Button from './../../components/button';
 import {ArrowRightIcon} from '../../components/Icon';
 import EmptyDataComponent from '../../components/emptyData';
-import {getBasketData} from '../../modules/basket';
+import {useAppSelector} from '../../app/hook';
+import LoadingView from '../../components/loading';
 
 const BasketScreen: React.FC = () => {
-  const haveProduct: boolean = true;
-  useEffect(() => {
-    getBasketData();
-  }, []);
+  const basketStates = useAppSelector(state => state.basket);
+  if (basketStates.loading) {
+    return <LoadingView />;
+  }
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <View style={[styles.container, haveProduct ? {paddingBottom: 80} : {}]}>
-      {haveProduct ? (
+    <View
+      style={[
+        styles.container,
+        // eslint-disable-next-line react-native/no-inline-styles
+        basketStates.data.length > 0 ? {paddingBottom: 80} : {},
+      ]}>
+      {basketStates.data.length > 0 ? (
         <>
-          <ScrollView>
-            <BasketCard />
-            <BasketCard />
-          </ScrollView>
+          <FlatList
+            data={basketStates.data}
+            renderItem={({item}) => (
+              <BasketCard
+                name={item.name}
+                price={item.price}
+                image={item.cover_photo}
+              />
+            )}
+          />
           <View style={styles.checkoutArea}>
             <View>
               <Text style={styles.totalText}>Total Price</Text>

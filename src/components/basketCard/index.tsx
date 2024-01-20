@@ -3,17 +3,20 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {images} from '../../assets';
-// import {Ionicons} from '@expo/vector-icons';
 
-const BasketCard: React.FC = () => {
+interface IBasketCard {
+  name: string;
+  price: number;
+  image: string;
+}
+const BasketCard: React.FC<IBasketCard> = ({name, price, image}) => {
   return (
     <View style={styles.area}>
-      <Image style={styles.photo} source={images.phone} />
+      <Image style={styles.photo} source={{uri: image}} resizeMode="contain" />
       <View style={styles.infoArea}>
         <View style={styles.productNameArea}>
           <Text numberOfLines={1} style={styles.productName}>
-            Werolla Cardigans
+            {name}
           </Text>
           {/* <Ionicons name="md-trash-outline" size={24} color="black" /> */}
         </View>
@@ -22,7 +25,7 @@ const BasketCard: React.FC = () => {
           <Text style={{color: 'gray'}}>Color</Text>
         </View>
         <View style={styles.priceArea}>
-          <Text style={{fontWeight: '600', fontSize: 16}}>$385.00</Text>
+          <Text style={{fontWeight: '600', fontSize: 16}}>${price}</Text>
           <View style={styles.countArea}>
             <Text style={{fontSize: 16}}>-</Text>
             <Text style={{fontSize: 16}}>1</Text>

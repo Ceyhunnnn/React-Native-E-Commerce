@@ -22,6 +22,7 @@ import LoadingView from '../../components/loading';
 import {fetchDiscountProduct} from '../../features/discountProducts/discountProductSlice';
 import {RootStackParamList} from '../../navigation/AppRoutes';
 import {getUserData} from '../../modules/user';
+import {fetchBasket} from '../../features/basket/basketSlice';
 
 interface IHomeProps {
   navigation: StackNavigationProp<RootStackParamList, 'home'>;
@@ -32,11 +33,13 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
   const categoryStates = useAppSelector(state => state.category);
   const discountProdStates = useAppSelector(state => state.discountProd);
   const userStates = useAppSelector(state => state.user);
+  const basketState = useAppSelector(state => state.basket);
   const getAllRequiredData = async () => {
     const promiseList = [
+      getUserData(),
       dispatch(fetchCategory()),
       dispatch(fetchDiscountProduct()),
-      getUserData(),
+      dispatch(fetchBasket(userStates.data?._id)),
     ];
     return await Promise.all(promiseList);
   };
@@ -46,6 +49,12 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (basketState.data.length <= 0 && userStates.data) {
+      dispatch(fetchBasket(userStates.data?._id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userStates.data]);
 
   if (categoryStates.loading) {
     return <LoadingView />;
