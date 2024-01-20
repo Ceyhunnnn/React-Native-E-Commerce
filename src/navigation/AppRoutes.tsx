@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from '../screens/loginScreen';
 import RegisterScreen from '../screens/registerScreen';
@@ -7,6 +7,11 @@ import EditProfile from '../screens/profileScreen/screens/editProfile';
 import CategoryProductScreen from '../screens/categoryDetailScreen';
 import ProductDetailScreen from '../screens/productDetailScreen';
 import {IProductDetailData} from '../screens/categoryDetailScreen/types';
+import TokenService from '../service/tokenService';
+import LoadingView from '../components/loading';
+import {setLoginState} from '../features/login/loginSlice';
+import {useAppDispatch, useAppSelector} from '../app/hook';
+import axiosClient from '../service/axios';
 
 export type RootStackParamList = {
   login: undefined;
@@ -22,24 +27,44 @@ export type RootStackParamList = {
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
+
 const AppRoutes: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+  const isLogin = useAppSelector(state => state.login.value);
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    async function checkUserLogin() {
+      const token = await TokenService.getToken();
+      axiosClient.defaults.headers.common.Authorization = `Bearer ${token}`;
+      dispatch(setLoginState(token));
+      setLoading(false);
+    }
+    checkUserLogin();
+  }, [dispatch, isLogin]);
+  if (loading) {
+    return <LoadingView />;
+  }
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="login"
-        options={{
-          headerShown: false,
-          title: 'Login',
-        }}
-        component={LoginScreen}
-      />
-      <Stack.Screen
-        name="register"
-        component={RegisterScreen}
-        options={{
-          title: 'Register',
-        }}
-      />
+      {!isLogin && (
+        <>
+          <Stack.Screen
+            name="login"
+            options={{
+              headerShown: false,
+              title: 'Login',
+            }}
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            name="register"
+            component={RegisterScreen}
+            options={{
+              title: 'Register',
+            }}
+          />
+        </>
+      )}
       <Stack.Screen
         name="homelayout"
         component={HomeLayout}

@@ -34,7 +34,7 @@ const LoginScreen: React.FC<ILoginProps> = props => {
         if (res?.data.success) {
           await TokenService.setToken(res.data.token);
           axiosClient.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-          navigation.navigate('homelayout');
+          navigation.replace('homelayout');
         }
       },
     );
