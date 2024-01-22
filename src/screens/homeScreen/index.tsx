@@ -39,7 +39,6 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
       getUserData(),
       dispatch(fetchCategory()),
       dispatch(fetchDiscountProduct()),
-      dispatch(fetchBasket(userStates.data?._id)),
     ];
     return await Promise.all(promiseList);
   };

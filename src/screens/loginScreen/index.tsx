@@ -20,7 +20,6 @@ import ErrorText from '../../components/errorText';
 import apiCall from '../../service/api';
 import {ILoginType} from '../../types/auth';
 import TokenService from '../../service/tokenService';
-import axiosClient from '../../service/axios';
 
 interface ILoginProps {
   navigation: StackNavigationProp<any, any>;
@@ -33,7 +32,6 @@ const LoginScreen: React.FC<ILoginProps> = props => {
       async res => {
         if (res?.data.success) {
           await TokenService.setToken(res.data.token);
-          axiosClient.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
           navigation.replace('homelayout');
         }
       },

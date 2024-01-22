@@ -11,7 +11,6 @@ import TokenService from '../service/tokenService';
 import LoadingView from '../components/loading';
 import {setLoginState} from '../features/login/loginSlice';
 import {useAppDispatch, useAppSelector} from '../app/hook';
-import axiosClient from '../service/axios';
 
 export type RootStackParamList = {
   login: undefined;
@@ -35,7 +34,6 @@ const AppRoutes: React.FC<{}> = () => {
   useEffect(() => {
     async function checkUserLogin() {
       const token = await TokenService.getToken();
-      axiosClient.defaults.headers.common.Authorization = `Bearer ${token}`;
       dispatch(setLoginState(token));
       setLoading(false);
     }
