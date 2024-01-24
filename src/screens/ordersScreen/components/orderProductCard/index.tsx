@@ -12,10 +12,12 @@ const OrderProductCard: React.FC<IOrderProductCard> = ({
   createdDate,
   productList,
 }) => {
+  const date = new Date(createdDate);
   return (
     <View style={styles.orderCard}>
       <Text style={styles.fontWeight}>
-        Created Date : <Text style={styles.fontNormal}>{createdDate}</Text>
+        Created Date :{' '}
+        <Text style={styles.fontNormal}>{date.toLocaleString()}</Text>
       </Text>
       <Text style={styles.fontWeight}>Products :</Text>
       <View>

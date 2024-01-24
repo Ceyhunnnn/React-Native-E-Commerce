@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 5,
+    marginVertical: 5,
   },
   productImg: {
     width: 50,
