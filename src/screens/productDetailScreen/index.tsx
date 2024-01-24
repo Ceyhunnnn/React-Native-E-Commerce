@@ -6,6 +6,7 @@ import {RootStackParamList} from '../../navigation/AppRoutes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import Button from '../../components/button';
+import {addProductToBasket} from '../../modules/basket';
 
 interface IProductDetail {
   navigation?: StackNavigationProp<RootStackParamList, 'productDetail'>;
@@ -88,7 +89,11 @@ const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
             )}
           </View>
         </View>
-        <Button title={'Add to Basket'} style={styles.button} />
+        <Button
+          title={'Add to Basket'}
+          style={styles.button}
+          onPress={() => addProductToBasket(productData)}
+        />
       </View>
     </View>
   );
