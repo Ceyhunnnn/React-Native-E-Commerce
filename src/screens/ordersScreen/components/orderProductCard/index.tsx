@@ -1,26 +1,25 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import OrderProduct from '../orderProduct';
-import {IProductList} from '../../types';
+import {IBasketData} from '../../../../types/basket';
 
 interface IOrderProductCard {
   createdDate: string;
-  totalPrice: number;
-  productList: IProductList[];
+  productList: IBasketData[];
 }
 
-const OrderProductCard: React.FC<IOrderProductCard> = () => {
+const OrderProductCard: React.FC<IOrderProductCard> = ({
+  createdDate,
+  productList,
+}) => {
   return (
     <View style={styles.orderCard}>
       <Text style={styles.fontWeight}>
-        Created Date : <Text style={styles.fontNormal}> 06.11.2000</Text>
-      </Text>
-      <Text style={styles.fontWeight}>
-        Total Price :<Text style={styles.fontNormal}> $ 1258.50</Text>
+        Created Date : <Text style={styles.fontNormal}>{createdDate}</Text>
       </Text>
       <Text style={styles.fontWeight}>Products :</Text>
       <View>
-        <OrderProduct productList={[]} />
+        <OrderProduct productList={productList} />
       </View>
     </View>
   );

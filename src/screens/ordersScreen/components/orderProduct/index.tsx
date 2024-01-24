@@ -1,21 +1,27 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {images} from '../../../../assets';
 import React from 'react';
-import {IProductList} from '../../types';
+import {IBasketData} from '../../../../types/basket';
+import {FlatList} from 'react-native-gesture-handler';
 
 interface IOrderProductProps {
-  productList: IProductList[];
+  productList: IBasketData[];
 }
 
-const OrderProduct: React.FC<IOrderProductProps> = () => {
+const OrderProduct: React.FC<IOrderProductProps> = ({productList}) => {
   return (
-    <View style={styles.productArea}>
-      <Image style={styles.productImg} source={images.product} />
-      <View>
-        <Text>Mobile Phone</Text>
-        <Text>$ 1250.00</Text>
-      </View>
-    </View>
+    <FlatList
+      data={productList}
+      renderItem={({item}) => (
+        <View style={styles.productArea}>
+          <Image style={styles.productImg} source={{uri: item.cover_photo}} />
+          <View>
+            <Text>{item.name}</Text>
+            <Text>$ {item.price}</Text>
+          </View>
+        </View>
+      )}
+      keyExtractor={item => item._id}
+    />
   );
 };
 export default OrderProduct;
