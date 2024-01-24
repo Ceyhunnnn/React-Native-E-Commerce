@@ -3,13 +3,17 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
+import {DeleteIcon} from '../Icon';
+import {deleteProductFromBasket} from '../../modules/basket';
+import {IBasketData} from '../../types/basket';
 
 interface IBasketCard {
   name: string;
   price: number;
   image: string;
+  item: IBasketData;
 }
-const BasketCard: React.FC<IBasketCard> = ({name, price, image}) => {
+const BasketCard: React.FC<IBasketCard> = ({name, price, image, item}) => {
   return (
     <View style={styles.area}>
       <Image style={styles.photo} source={{uri: image}} resizeMode="contain" />
@@ -18,7 +22,11 @@ const BasketCard: React.FC<IBasketCard> = ({name, price, image}) => {
           <Text numberOfLines={1} style={styles.productName}>
             {name}
           </Text>
-          {/* <Ionicons name="md-trash-outline" size={24} color="black" /> */}
+          <DeleteIcon
+            size={25}
+            color="red"
+            onPress={() => deleteProductFromBasket(item)}
+          />
         </View>
         <View style={styles.selectedArea}>
           <View style={styles.selectedColor}></View>

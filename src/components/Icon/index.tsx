@@ -5,10 +5,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {StyleProp, ViewStyle} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 interface IIconsProps {
   size: number;
   color?: string;
   style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 export const HomeIcon: React.FC<IIconsProps> = props => {
@@ -102,6 +104,18 @@ export const OrdersIcon: React.FC<IIconsProps> = props => {
       size={props.size}
       color={props.color}
       style={props.style}
+    />
+  );
+};
+
+export const DeleteIcon: React.FC<IIconsProps> = props => {
+  return (
+    <MaterialCommunityIcons
+      name="delete"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
     />
   );
 };

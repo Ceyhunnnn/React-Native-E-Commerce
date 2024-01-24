@@ -29,6 +29,7 @@ const BasketScreen: React.FC = () => {
                 name={item.name}
                 price={item.price}
                 image={item.cover_photo}
+                item={item}
               />
             )}
           />

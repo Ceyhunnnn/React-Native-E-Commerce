@@ -31,9 +31,7 @@ const ProductCard: React.FC<IProductCard> = ({
           </View>
         </View>
         <Pressable style={styles.textArea} onPress={onPress}>
-          <Text numberOfLines={1} style={styles.productName}>
-            {name}
-          </Text>
+          <Text numberOfLines={1}>{name}</Text>
           <View style={styles.priceTextArea}>
             <Text
               numberOfLines={1}
