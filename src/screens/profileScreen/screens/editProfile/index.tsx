@@ -18,7 +18,6 @@ const EditProfile: React.FC<{}> = () => {
       type: 'patch',
       message: true,
     }).then(async res => {
-      console.log(res?.data.success);
       if (res?.data.success) {
         await getUserData();
         CustomAlert({title: 'Update Profile', desc: 'User profile updated!'});

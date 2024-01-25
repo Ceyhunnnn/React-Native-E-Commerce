@@ -6,19 +6,28 @@ interface IBasketProps {
   data: IBasketData[];
   loading: boolean;
   error: string;
+  id: string;
+}
+interface data {
+  data: IBasketData[];
+  id: string;
 }
 
 const initialState: IBasketProps = {
   data: [],
   loading: true,
   error: '',
+  id: '',
 };
 
 export const fetchBasket = createAsyncThunk(
   'fetchBasket',
   async (userId: string | undefined) => {
     const response = await axiosClient.get(`getUserBasket/${userId}`);
-    return response.data.data[0].basketList;
+    return {
+      data: response.data.data[0].basketList,
+      id: response?.data.data[0]._id,
+    };
   },
 );
 
@@ -33,8 +42,9 @@ const basketSlice = createSlice({
     });
     builder.addCase(
       fetchBasket.fulfilled,
-      (state, action: PayloadAction<IBasketData[]>) => {
-        state.data = action.payload;
+      (state, action: PayloadAction<data>) => {
+        state.data = action.payload.data;
+        state.id = action.payload.id;
         state.loading = false;
       },
     );

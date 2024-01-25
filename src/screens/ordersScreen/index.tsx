@@ -3,10 +3,9 @@ import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import EmptyDataComponent from '../../components/emptyData';
 import OrderProductCard from './components/orderProductCard';
-import apiCall from '../../service/api';
-import {useAppSelector} from '../../app/hook';
 import {IBasketData} from '../../types/basket';
 import LoadingView from '../../components/loading';
+import {getOrders} from '../../modules/order';
 
 interface IOrderData {
   createdAt: string;
@@ -18,32 +17,31 @@ const OrdersScreen: React.FC<{}> = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [orderData, setOrderData] = useState<IOrderData[]>();
-  const userId = useAppSelector(state => state.user.data?._id);
   const getUserOrders = async () => {
-    const body = {
-      userId: userId,
-    };
-    await apiCall('getOrder', {body: body, type: 'post'}).then(res => {
-      if (res?.status === 200) {
-        setOrderData(res?.data.data);
-        setLoading(false);
-        setTimeout(() => {
-          setRefresh(false);
-        }, 1000);
-      }
-    });
+    const data = await getOrders();
+    setOrderData(data as unknown as IOrderData[]);
+    setTimeout(() => {
+      setRefresh(false);
+    }, 1000);
   };
   const refreshEvent = async () => {
     setRefresh(true);
     await getUserOrders();
   };
   useEffect(() => {
-    getUserOrders();
+    async function getUserOrdersData() {
+      await getUserOrders();
+    }
+    getUserOrdersData();
+    setLoading(false);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   if (loading) {
     return <LoadingView />;
   }
+
   return (
     <View style={styles.content}>
       {!orderData ? (

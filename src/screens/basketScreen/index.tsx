@@ -9,16 +9,15 @@ import {useAppSelector} from '../../app/hook';
 import {IBasketData} from '../../types/basket';
 import LoadingView from '../../components/loading';
 import {useIsFocused} from '@react-navigation/native';
+import {createOrder} from '../../modules/basket';
 
 const BasketScreen: React.FC = () => {
   const isFocused = useIsFocused();
-
   const basketStates = useAppSelector(state => state.basket);
   const [basketData, setBasketData] = useState<IBasketData[]>(
     basketStates.data,
   );
   const [totalPrice, setTotalPrice] = useState<number>(0);
-
   useEffect(() => {
     if (basketStates.data.length >= 1) {
       calculateTotalPrice();
@@ -94,6 +93,7 @@ const BasketScreen: React.FC = () => {
             <Button
               title="Buy"
               style={styles.button}
+              onPress={() => createOrder(basketData, basketStates.id)}
               iconRight={<ArrowRightIcon size={20} color="white" />}
             />
           </View>
