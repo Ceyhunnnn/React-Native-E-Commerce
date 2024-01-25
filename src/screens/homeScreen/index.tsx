@@ -83,6 +83,7 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}) => {
                 renderItem={({item}) => (
                   <CategoryCard
                     key={item._id}
+                    slug={item.slug}
                     title={item.name}
                     onPress={() =>
                       navigation.navigate('categoryProduct', {

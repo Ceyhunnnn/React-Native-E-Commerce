@@ -1,18 +1,21 @@
 import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {StyleProp, ViewStyle} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 interface IIconsProps {
   size: number;
   color?: string;
   style?: StyleProp<ViewStyle>;
   onPress?: () => void;
 }
-
 export const HomeIcon: React.FC<IIconsProps> = props => {
   return (
     <AntDesign
@@ -23,7 +26,6 @@ export const HomeIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
-
 export const BasketIcon: React.FC<IIconsProps> = props => {
   return (
     <Feather
@@ -44,7 +46,6 @@ export const PersonIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
-
 export const LogoutIcon: React.FC<IIconsProps> = props => {
   return (
     <AntDesign
@@ -55,7 +56,6 @@ export const LogoutIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
-
 export const UserEditICon: React.FC<IIconsProps> = props => {
   return (
     <FontAwesome5
@@ -96,7 +96,6 @@ export const WatchIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
-
 export const OrdersIcon: React.FC<IIconsProps> = props => {
   return (
     <Feather
@@ -107,11 +106,76 @@ export const OrdersIcon: React.FC<IIconsProps> = props => {
     />
   );
 };
-
 export const DeleteIcon: React.FC<IIconsProps> = props => {
   return (
     <MaterialCommunityIcons
       name="delete"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
+    />
+  );
+};
+export const WomanBag: React.FC<IIconsProps> = props => {
+  return (
+    <SimpleLineIcons
+      name="handbag"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
+    />
+  );
+};
+export const MenTshirt: React.FC<IIconsProps> = props => {
+  return (
+    <Ionicons
+      name="shirt-outline"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
+    />
+  );
+};
+export const TVIcon: React.FC<IIconsProps> = props => {
+  return (
+    <FontAwesome
+      name="tv"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
+    />
+  );
+};
+export const Kitchen: React.FC<IIconsProps> = props => {
+  return (
+    <FontAwesome6
+      name="kitchen-set"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
+    />
+  );
+};
+export const Medicine: React.FC<IIconsProps> = props => {
+  return (
+    <AntDesign
+      name="medicinebox"
+      size={props.size}
+      color={props.color}
+      style={props.style}
+      onPress={props.onPress}
+    />
+  );
+};
+export const Sports: React.FC<IIconsProps> = props => {
+  return (
+    <MaterialIcons
+      name="sports-tennis"
       size={props.size}
       color={props.color}
       style={props.style}

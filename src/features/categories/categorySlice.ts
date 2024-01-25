@@ -4,6 +4,7 @@ import axiosClient from '../../service/axios';
 interface ICategory {
   name: string;
   _id: string;
+  slug: string;
 }
 
 interface ICategoryState {
