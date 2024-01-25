@@ -6,6 +6,7 @@ import OrderProductCard from './components/orderProductCard';
 import {IBasketData} from '../../types/basket';
 import LoadingView from '../../components/loading';
 import {getOrders} from '../../modules/order';
+import {useIsFocused} from '@react-navigation/native';
 
 interface IOrderData {
   createdAt: string;
@@ -14,6 +15,7 @@ interface IOrderData {
 }
 
 const OrdersScreen: React.FC<{}> = () => {
+  const isFocused = useIsFocused();
   const [loading, setLoading] = useState<boolean>(true);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [orderData, setOrderData] = useState<IOrderData[]>();
@@ -36,7 +38,7 @@ const OrdersScreen: React.FC<{}> = () => {
     setLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
 
   if (loading) {
     return <LoadingView />;
