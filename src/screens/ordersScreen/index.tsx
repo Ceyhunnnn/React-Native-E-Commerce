@@ -18,7 +18,7 @@ const OrdersScreen: React.FC<{}> = () => {
   const isFocused = useIsFocused();
   const [loading, setLoading] = useState<boolean>(true);
   const [refresh, setRefresh] = useState<boolean>(false);
-  const [orderData, setOrderData] = useState<IOrderData[]>();
+  const [orderData, setOrderData] = useState<IOrderData[]>([]);
   const getUserOrders = async () => {
     const data = await getOrders();
     setOrderData(data as unknown as IOrderData[]);
@@ -40,13 +40,13 @@ const OrdersScreen: React.FC<{}> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocused]);
 
-  if (loading) {
+  if (loading === true) {
     return <LoadingView />;
   }
 
   return (
     <View style={styles.content}>
-      {!orderData ? (
+      {orderData.length < 0 ? (
         <EmptyDataComponent
           title="You don't have an order yet"
           desc="You don't have an ongoing orders at this time"
