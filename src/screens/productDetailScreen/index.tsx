@@ -21,7 +21,7 @@ const ProductDetailScreen: React.FC<IProductDetail> = ({route}) => {
   const [quantity, setQuantity] = useState<number>(1);
   const productData = route?.params.detail;
   let discountTotal =
-    productData.price - productData.price / productData?.discount;
+    productData.price - (productData.price * productData?.discount) / 100;
 
   const downQuantity = () => {
     if (quantity !== 1) {

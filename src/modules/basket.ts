@@ -1,5 +1,5 @@
 import {store} from '../app/store';
-import CustomAlert from '../components/alert';
+// import CustomAlert from '../components/alert';
 import {fetchBasket} from '../features/basket/basketSlice';
 import apiCall from '../service/api';
 import {IBasketData} from '../types/basket';
@@ -15,18 +15,18 @@ export const addProductToBasket = async (basketData: IBasketData) => {
       type: 'post',
     }).then(async res => {
       if (res?.data.success) {
-        CustomAlert({
-          title: 'Adding Product to Basket',
-          desc: 'Product added to basket',
-        });
+        // CustomAlert({
+        //   title: 'Adding Product to Basket',
+        //   desc: 'Product added to basket',
+        // });
         await store.dispatch(fetchBasket(userId));
       }
     });
   } else {
-    CustomAlert({
-      title: 'Adding Product to Basket',
-      desc: 'The product is already added to your basket',
-    });
+    // CustomAlert({
+    //   title: 'Adding Product to Basket',
+    //   desc: 'The product is already added to your basket',
+    // });
   }
 };
 export const deleteProductFromBasket = async (basketData: IBasketData) => {
@@ -35,9 +35,9 @@ export const deleteProductFromBasket = async (basketData: IBasketData) => {
     userId,
     deleteItem: basketData,
   };
-  await apiCall('deleteBasketItem', {body, type: 'delete'}).then(res => {
+  await apiCall('deleteBasketItem', {body, type: 'delete'}).then(async res => {
     if (res?.status === 200) {
-      store.dispatch(fetchBasket(userId));
+      await store.dispatch(fetchBasket(userId));
     }
   });
 };

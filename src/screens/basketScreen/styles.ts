@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   },
   totalText: {
     fontSize: 14,
+    color: 'gray',
   },
   price: {
     fontSize: 20,

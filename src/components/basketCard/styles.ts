@@ -63,5 +63,30 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
+  totalText: {
+    fontSize: 13,
+    color: 'gray',
+  },
+  price: {
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  priceTextArea: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
+  },
+
+  productPrice: {
+    fontWeight: '600',
+    color: 'gray',
+    fontSize: 13,
+  },
+  discount: {
+    color: 'red',
+    fontSize: 13,
+    textDecorationLine: 'line-through',
+  },
 });
 export {styles};

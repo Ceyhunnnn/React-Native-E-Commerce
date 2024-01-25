@@ -17,7 +17,7 @@ const ProductCard: React.FC<IProductCard> = ({
   discount,
   onPress,
 }) => {
-  let discountTotal = price - price / discount;
+  let discountTotal = price - (price * discount) / 100;
 
   return (
     <>
