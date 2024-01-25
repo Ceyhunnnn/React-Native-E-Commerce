@@ -11,6 +11,7 @@ import TokenService from '../service/tokenService';
 import LoadingView from '../components/loading';
 import {setLoginState} from '../features/login/loginSlice';
 import {useAppDispatch, useAppSelector} from '../app/hook';
+// import apiCall from '../service/api';
 
 export type RootStackParamList = {
   login: undefined;
@@ -28,6 +29,7 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppRoutes: React.FC<{}> = () => {
+  // const [isToken, setIsToken] = useState<boolean>();
   const dispatch = useAppDispatch();
   const isLogin = useAppSelector(state => state.login.value);
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,6 +38,10 @@ const AppRoutes: React.FC<{}> = () => {
       const token = await TokenService.getToken();
       dispatch(setLoginState(token));
       setLoading(false);
+      // await apiCall('checkToken', {type: 'get'}).then(res => {
+      //   console.log(res?.data.message);
+      //   setIsToken(res?.data.message);
+      // });
     }
     checkUserLogin();
   }, [dispatch, isLogin]);

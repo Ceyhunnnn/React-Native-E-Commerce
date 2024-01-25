@@ -12,13 +12,14 @@ import React from 'react';
 import {styles} from './styles';
 // import {SimpleLineIcons} from '@expo/vector-icons';
 // import {MaterialIcons} from '@expo/vector-icons';
-import {NavigationProp} from '@react-navigation/native';
 import {images} from '../../assets';
 import {ArrowRightIcon, LogoutIcon, UserEditICon} from '../../components/Icon';
 import {useAppSelector} from '../../app/hook';
+import {logout} from '../../modules/auth';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 interface IProfileProps {
-  navigation: NavigationProp<any, any>;
+  navigation: StackNavigationProp<any, any>;
 }
 interface IProfileMenuProps {
   title: string;
@@ -45,7 +46,9 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
       arrow: false,
       icon: <LogoutIcon size={18} color="red" />,
       textColor: 'red',
-      event: (): void => {},
+      event: async (): Promise<void> => {
+        await logout(navigation);
+      },
     },
   ];
   const ProfileMenuItems: React.FC<IProfileMenuProps> = propsMenu => {
