@@ -33,9 +33,9 @@ const OrdersScreen: React.FC<{}> = () => {
   useEffect(() => {
     async function getUserOrdersData() {
       await getUserOrders();
+      setLoading(false);
     }
     getUserOrdersData();
-    setLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocused]);
