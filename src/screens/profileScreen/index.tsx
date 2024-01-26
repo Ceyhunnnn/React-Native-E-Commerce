@@ -17,6 +17,7 @@ import {ArrowRightIcon, LogoutIcon, UserEditICon} from '../../components/Icon';
 import {useAppSelector} from '../../app/hook';
 import {logout} from '../../modules/auth';
 import {StackNavigationProp} from '@react-navigation/stack';
+import CustomAlert from '../../components/alert';
 
 interface IProfileProps {
   navigation: StackNavigationProp<any, any>;
@@ -47,7 +48,14 @@ const ProfileScreen: React.FC<IProfileProps> = props => {
       icon: <LogoutIcon size={18} color="red" />,
       textColor: 'red',
       event: async (): Promise<void> => {
-        await logout(navigation);
+        CustomAlert({
+          title: 'Logout',
+          desc: 'Are you sure?',
+          isCancel: true,
+          onPress: async () => {
+            await logout(navigation);
+          },
+        });
       },
     },
   ];
