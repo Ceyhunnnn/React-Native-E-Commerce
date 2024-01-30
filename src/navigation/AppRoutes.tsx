@@ -11,6 +11,8 @@ import TokenService from '../service/tokenService';
 import LoadingView from '../components/loading';
 import {setLoginState} from '../features/login/loginSlice';
 import {useAppDispatch, useAppSelector} from '../app/hook';
+import apiCall from '../service/api';
+import AsyncStorageService from '../service/asyncStorage';
 // import apiCall from '../service/api';
 
 export type RootStackParamList = {
@@ -29,28 +31,32 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppRoutes: React.FC<{}> = () => {
-  // const [isToken, setIsToken] = useState<boolean>();
+  const [isToken, setIsToken] = useState<boolean>();
   const dispatch = useAppDispatch();
   const isLogin = useAppSelector(state => state.login.value);
+  const userData = useAppSelector(state => state.user.data?._id);
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     async function checkUserLogin() {
       const token = await TokenService.getToken();
       dispatch(setLoginState(token));
       setLoading(false);
-      // await apiCall('checkToken', {type: 'get'}).then(res => {
-      //   console.log(res?.data.message);
-      //   setIsToken(res?.data.message);
-      // });
+      await apiCall('checkToken', {type: 'get'}).then(async res => {
+        console.log(res?.data.message);
+        setIsToken(res?.data.message);
+        if (!res?.data.message && userData) {
+          await AsyncStorageService.deleteAllStorage();
+        }
+      });
     }
     checkUserLogin();
-  }, [dispatch, isLogin]);
+  }, [dispatch, isLogin, userData]);
   if (loading) {
     return <LoadingView />;
   }
   return (
     <Stack.Navigator>
-      {!isLogin && (
+      {!isLogin && !isToken && (
         <>
           <Stack.Screen
             name="login"
