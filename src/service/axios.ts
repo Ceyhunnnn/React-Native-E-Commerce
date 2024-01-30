@@ -2,7 +2,7 @@ import axios from 'axios';
 import TokenService from './tokenService';
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:3001/api/',
+  baseURL: 'http://192.168.10.102:3001/api/',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',

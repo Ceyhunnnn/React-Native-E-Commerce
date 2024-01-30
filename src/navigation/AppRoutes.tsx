@@ -34,7 +34,6 @@ const AppRoutes: React.FC<{}> = () => {
   const [isToken, setIsToken] = useState<boolean>();
   const dispatch = useAppDispatch();
   const isLogin = useAppSelector(state => state.login.value);
-  const userData = useAppSelector(state => state.user.data?._id);
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     async function checkUserLogin() {
@@ -42,16 +41,15 @@ const AppRoutes: React.FC<{}> = () => {
       dispatch(setLoginState(token));
       setLoading(false);
       await apiCall('checkToken', {type: 'get'}).then(async res => {
-        console.log(res?.data.message);
         setIsToken(res?.data.message);
-        if (!res?.data.message && userData) {
+        if (!res?.data.message) {
           await AsyncStorageService.deleteAllStorage();
         }
       });
     }
     checkUserLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, isLogin]);
   if (loading) {
     return <LoadingView />;
   }
