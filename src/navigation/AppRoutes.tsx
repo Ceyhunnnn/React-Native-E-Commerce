@@ -50,7 +50,8 @@ const AppRoutes: React.FC<{}> = () => {
       });
     }
     checkUserLogin();
-  }, [dispatch, isLogin, userData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
   if (loading) {
     return <LoadingView />;
   }
